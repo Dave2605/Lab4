@@ -20,10 +20,10 @@ import java.util.ArrayList;
 public class Find extends HttpServlet{
 
     @EJB
-    AuthorManager authorManager = new AuthorManager();
+    AuthorManager authorManager;
 
     @EJB
-    BookManager bookManager = new BookManager();
+    BookManager bookManager;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String requestType = request.getParameter("type");
@@ -40,6 +40,13 @@ public class Find extends HttpServlet{
         ArrayList<Book> books = new ArrayList<Book>();
         String name = request.getParameter("name");
         String author = request.getParameter("author");
+
+        if (name.isEmpty()) {
+            name = "Book name";
+        }
+        if (author.isEmpty()) {
+            author = "Author name";
+        }
 
         try {
             if (name.equals("Book name") && author.equals("Author name")) {
@@ -61,7 +68,15 @@ public class Find extends HttpServlet{
     private void findAuthor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Author author = null;
         String name = request.getParameter("name");
-        String birthPlace = request.getParameter("birth_place");
+        String birthPlace = request.getParameter("birthPlace");
+
+        if (name.isEmpty()) {
+            name = "Author name";
+        }
+        if (birthPlace.isEmpty()) {
+            birthPlace = "Author birth place";
+        }
+
 
         try {
             if (name.equals("Author name") && birthPlace.equals("Author birth place")) {

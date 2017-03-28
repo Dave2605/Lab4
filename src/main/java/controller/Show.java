@@ -20,10 +20,10 @@ import java.util.List;
 public class Show extends HttpServlet{
 
     @EJB
-    BookManager bookManager = new BookManager();
+    BookManager bookManager;
 
     @EJB
-    AuthorManager authorManager = new AuthorManager();
+    AuthorManager authorManager;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String requestType = request.getParameter("type");

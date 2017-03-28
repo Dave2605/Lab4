@@ -10,7 +10,7 @@
 <body>
 
 <table width="100%">
-    <tr><th>ID</th><th>Name</th><th>Author</th><th>Birth place</th></tr>
+    <tr><th>ID</th><th>Name</th><th>Birth place</th></tr>
     <c:forEach var="author" items="${authors}">
 
         <tr><th>${author.id}</th><th>${author.name}</th><th>${author.birth_place}</th><th>

@@ -16,10 +16,10 @@ import java.io.IOException;
 public class Add extends HttpServlet{
 
     @EJB
-    AuthorManager authorManager = new AuthorManager();
+    AuthorManager authorManager;
 
     @EJB
-    BookManager bookManager = new BookManager();
+    BookManager bookManager;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String requestType = request.getParameter("type");
