@@ -23,20 +23,20 @@ public class AuthorManager {
         Author author = null;
         if (!name.equals("Author name") && birthPlace.equals("Author birth place")) {
             author = (Author) entityManager
-                    .createQuery("select a from Author a where a.name = :name")
-                    .setParameter("name", name)
+                    .createQuery("select a from Author a where a.name like :name")
+                    .setParameter("name", "%"+name+"%")
                     .getSingleResult();
 
         } else if (name.equals("Author name") && !birthPlace.equals("Author birth place")) {
             author = (Author) entityManager
-                    .createQuery("select a from Author a where a.birth_place = :birthPlace")
-                    .setParameter("birthPlace", birthPlace)
+                    .createQuery("select a from Author a where a.birth_place like :birthPlace")
+                    .setParameter("birthPlace", "%"+birthPlace+"%")
                     .getSingleResult();
 
         } else if (!name.equals("Author name") && !birthPlace.equals("Author birth place")) {
             author = (Author) entityManager
-                    .createQuery("select a from Author a where a.name = :name and a.birth_place = :birthPlace")
-                    .setParameter("name", name)
+                    .createQuery("select a from Author a where a.name like :name and a.birth_place like :birthPlace")
+                    .setParameter("name", "%"+name+"%")
                     .getSingleResult();
         }
         return author;

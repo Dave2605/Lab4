@@ -25,21 +25,21 @@ public class BookManager {
         Book book = null;
         if (!name.equals("Book name") && !author.equals("Author name")) {
             book = (Book) entityManager
-                    .createQuery("select b from Book b where b.name = :name and b.author = :author")
-                    .setParameter("name", name)
-                    .setParameter("author", author)
+                    .createQuery("select b from Book b where b.name like :name and b.author like :author")
+                    .setParameter("name", "%"+name+"%")
+                    .setParameter("author", "%"+author+"%")
                     .getSingleResult();
 
         } else if (!name.equals("Book name") && author.equals("Author name")) {
             book = (Book) entityManager
-                    .createQuery("select b from Book b where b.name = :name")
-                    .setParameter("name", name)
+                    .createQuery("select b from Book b where b.name like :name")
+                    .setParameter("name", "%"+name+"%")
                     .getSingleResult();
 
         } else if (name.equals("Book name") && !author.equals("Author name")) {
             book = (Book) entityManager
-                    .createQuery("select b from Book b where b.author = :author")
-                    .setParameter("author", author)
+                    .createQuery("select b from Book b where b.author like :author")
+                    .setParameter("author", "%"+author+"%")
                     .getSingleResult();
         }
         return book;
