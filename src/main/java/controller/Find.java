@@ -53,7 +53,7 @@ public class Find extends HttpServlet{
                 throw new NoResultException();
             }
             book = bookManager.findBook(name, author);
-        } catch (NoResultException e) {
+        } catch (Exception e) {
             RequestDispatcher view = request.getRequestDispatcher("error.html");
             view.forward(request, response);
         }
@@ -76,14 +76,13 @@ public class Find extends HttpServlet{
         if (birthPlace.isEmpty()) {
             birthPlace = "Author birth place";
         }
-
-
+        
         try {
             if (name.equals("Author name") && birthPlace.equals("Author birth place")) {
                 throw new NoResultException();
             }
             author = authorManager.findAuthor(name, birthPlace);
-        } catch (NoResultException e) {
+        } catch (Exception e) {
             RequestDispatcher view = request.getRequestDispatcher("error.html");
             view.forward(request, response);
         }
